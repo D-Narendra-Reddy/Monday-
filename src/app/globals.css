@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-glass: rgba(255, 255, 255, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.6);
+  --color-glass-hover: rgba(255, 255, 255, 0.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-orange-50 via-amber-100 to-rose-100 overflow-x-hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass {
+    @apply bg-white/40 backdrop-blur-lg border border-white/60 shadow-[0_8px_32px_rgba(255,160,122,0.15)];
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/60 hover:shadow-[0_12px_40px_rgba(255,160,122,0.25)] transition-all duration-300;
+  }
+}
+
+/* Custom sunrise animations */
+@keyframes sunrise-glow {
+  0% { transform: scale(1) translate(-50%, -50%); opacity: 0.5; }
+  50% { transform: scale(1.1) translate(-45%, -45%); opacity: 0.8; }
+  100% { transform: scale(1) translate(-50%, -50%); opacity: 0.5; }
+}
+
+.animate-sunrise {
+  animation: sunrise-glow 15s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.animate-particle {
+  animation: float-particle 10s linear infinite;
+}
+
+@keyframes steam {
+  0% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-10px) scale(1.2); opacity: 0.2; }
+  100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+}
+
+.animate-steam {
+  animation: steam 2s ease-out infinite;
 }
