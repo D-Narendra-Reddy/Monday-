@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Coffee, Music, Volume2, VolumeX } from "lucide-react";
+import { Droplet, Music, Volume2, VolumeX } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 export default function OfficeMood() {
@@ -40,21 +40,41 @@ export default function OfficeMood() {
     <section className="py-16 md:py-20 px-4 relative max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-12">
         
-        {/* Coffee Cup Animation */}
-        <div className="relative flex-1 flex justify-center items-center">
+        {/* Water Animation */}
+        <div className="relative flex-1 flex flex-col justify-center items-center">
           <div className="relative">
-            {/* Steam */}
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex space-x-2">
-              <div className="w-1 h-12 bg-white/40 blur-sm rounded-full animate-steam" style={{ animationDelay: "0s" }} />
-              <div className="w-1.5 h-16 bg-white/40 blur-sm rounded-full animate-steam" style={{ animationDelay: "0.5s" }} />
-              <div className="w-1 h-10 bg-white/40 blur-sm rounded-full animate-steam" style={{ animationDelay: "1s" }} />
+            {/* Floating Droplets */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex space-x-3">
+              <motion.div 
+                animate={{ y: [0, -20, -40], opacity: [0, 1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0 }}
+                className="w-2 h-2 bg-blue-300 rounded-full"
+              />
+              <motion.div 
+                animate={{ y: [0, -30, -50], opacity: [0, 1, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                className="w-3 h-3 bg-blue-200 rounded-full"
+              />
+              <motion.div 
+                animate={{ y: [0, -20, -40], opacity: [0, 1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+                className="w-2 h-2 bg-blue-300 rounded-full"
+              />
             </div>
             
-            <div className="glass p-6 rounded-3xl flex items-center justify-center flex-col gap-4">
-              <Coffee className="w-16 h-16 text-amber-700" />
-              <span className="text-amber-800 font-medium">Virtual Coffee</span>
+            <div className="glass p-6 rounded-3xl flex items-center justify-center flex-col gap-4 border-blue-200/50 shadow-[0_8px_32px_rgba(59,130,246,0.15)]">
+              <Droplet className="w-16 h-16 text-blue-500" />
+              <span className="text-blue-600 font-medium">Fresh Water</span>
             </div>
           </div>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mt-6 text-slate-600 text-center text-sm sm:text-base font-light italic max-w-xs"
+          >
+            Since you don't like coffee or tea, here's some fresh water to keep you hydrated and refreshed! 💧
+          </motion.p>
         </div>
 
         {/* Sticky Notes */}
